@@ -40,6 +40,41 @@ img {
 }
 /* /reset */
 
+/* material design */
+/* Rules for sizing the icon. */
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
+.material-icons.md-96 {
+  font-size: 96px;
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
+/* /material design */
+
 /* typography */
 * {
   font-family: "Roboto", sans-serif;
@@ -65,3 +100,205 @@ img {
 .doge-gif {
   width: initial;
 }
+
+/* arrow container */
+.arrow-container {
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: none;
+  z-index: -1;
+}
+/* /arrow container */
+
+/* background animation */
+.arrow {
+  position: relative;
+  width: initial;
+  z-index: -1;
+}
+
+.arrow.bearish {
+  -webkit-animation: floatDown 10s infinite linear;
+  -moz-animation: floatDown 10s infinite linear;
+  -o-animation: floatDown 10s infinite linear;
+  animation: floatDown 10s infinite linear;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  color: #e15241;
+}
+
+.arrow.bullish {
+  -webkit-animation: floatUp 10s infinite linear;
+  -moz-animation: floatUp 10s infinite linear;
+  -o-animation: floatUp 10s infinite linear;
+  animation: floatUp 10s infinite linear;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  color: #4eaf0a;
+}
+
+@-webkit-keyframes floatUp {
+  0% {
+    top: 100vh;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 0vh;
+    opacity: 0;
+  }
+}
+@-moz-keyframes floatUp {
+  0% {
+    top: 100vh;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 0vh;
+    opacity: 0;
+  }
+}
+@-o-keyframes floatUp {
+  0% {
+    top: 100vh;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 0vh;
+    opacity: 0;
+  }
+}
+@keyframes floatUp {
+  0% {
+    top: 100vh;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 0vh;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes floatDown {
+  0% {
+    top: 0vh;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 85vh;
+    opacity: 0;
+  }
+}
+@-moz-keyframes floatDown {
+  0% {
+    top: 0vh;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 85vh;
+    opacity: 0;
+  }
+}
+@-o-keyframes floatDown {
+  0% {
+    top: 0vh;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 85vh;
+    opacity: 0;
+  }
+}
+@keyframes floatDown {
+  0% {
+    top: 0vh;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.6;
+  }
+  100% {
+    top: 85vh;
+    opacity: 0;
+  }
+}
+/* /background animation */
