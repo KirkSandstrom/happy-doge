@@ -41,12 +41,14 @@ const handleDogeData = function (data = 0) {
     );
     setGif(sadGif);
     setArrows("bearish");
+    arrowContainer.classList.add("bg-bearish");
   } else {
     setMessage(
       `Dogecoin is up ${Math.abs(percentChange24Hr)}% over the past 24 hours :D`
     );
     setGif(happyGif);
     setArrows("bullish");
+    arrowContainer.classList.add("bg-bullish");
   }
 };
 

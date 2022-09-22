@@ -81,6 +81,16 @@ img {
 }
 /* /typography */
 
+/* utility classes */
+.bg-bearish {
+  background-color: rgba(225, 82, 65, 0.5);
+}
+
+.bg-bullish {
+  background-color: rgba(78, 175, 10, 0.5);
+}
+/* /utility classes */
+
 .hero {
   width: 100vw;
   height: 100vh;
@@ -133,7 +143,7 @@ img {
   -moz-transform: scale(1);
   -o-transform: scale(1);
   transform: scale(1);
-  color: #e15241;
+  color: red;
 }
 
 .arrow.bullish {
@@ -145,7 +155,7 @@ img {
   -moz-transform: scale(1);
   -o-transform: scale(1);
   transform: scale(1);
-  color: #4eaf0a;
+  color: green;
 }
 
 @-webkit-keyframes floatUp {
