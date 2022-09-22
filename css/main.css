@@ -312,3 +312,20 @@ img {
   }
 }
 /* /background animation */
+
+/* mobile*/
+/* breakpoint: 930px */
+@media screen and (max-width: 930px) {
+  .arrow-container span:nth-child(odd) {
+    display: none;
+  }
+}
+
+/* breakpoint: 650px */
+@media screen and (max-width: 650px) {
+  .arrow-container span:nth-child(2),
+  .arrow-container span:nth-child(8) {
+    display: none;
+  }
+}
+/* /mobile */
