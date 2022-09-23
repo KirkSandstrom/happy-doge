@@ -31,11 +31,13 @@ const handleDogeData = function (data = 0) {
   }
 
   const percentChange24Hr = data.market_data.price_change_percentage_24h;
+  const roundedPercentChanger24Hr = roundAccurately(percentChange24Hr, 2);
 
-  if (percentChange24Hr < 0) {
+  if (roundedPercentChanger24Hr < 0) {
+    const roundedPercentChanger24Hr = roundAccurately(percentChange24Hr, 2);
     setMessage(
       `Dogecoin is down ${Math.abs(
-        percentChange24Hr
+        roundedPercentChanger24Hr
       )}% over the past 24 hours :(`
     );
     setGif(sadGif);
@@ -43,7 +45,9 @@ const handleDogeData = function (data = 0) {
     arrowContainer.classList.add("bg-bearish");
   } else {
     setMessage(
-      `Dogecoin is up ${Math.abs(percentChange24Hr)}% over the past 24 hours :D`
+      `Dogecoin is up ${Math.abs(
+        roundedPercentChanger24Hr
+      )}% over the past 24 hours :D`
     );
     setGif(happyGif);
     setArrows("bullish");
@@ -109,6 +113,12 @@ const resetAnimation = function (e) {
 
 const getRandomInt = function (max) {
   return Math.floor(Math.random() * max);
+};
+
+const roundAccurately = function (number, decimalPlaces) {
+  return Number(
+    Math.round(number + "e" + decimalPlaces) + "e-" + decimalPlaces
+  );
 };
 
 // main
