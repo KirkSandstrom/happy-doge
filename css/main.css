@@ -132,30 +132,37 @@ img {
   position: relative;
   width: initial;
   z-index: -1;
+  opacity: 0;
 }
 
 .arrow.bearish {
-  -webkit-animation: floatDown 10s infinite linear;
-  -moz-animation: floatDown 10s infinite linear;
-  -o-animation: floatDown 10s infinite linear;
-  animation: floatDown 10s infinite linear;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -o-transform: scale(1);
-  transform: scale(1);
   color: red;
 }
 
 .arrow.bullish {
-  -webkit-animation: floatUp 10s infinite linear;
-  -moz-animation: floatUp 10s infinite linear;
-  -o-animation: floatUp 10s infinite linear;
-  animation: floatUp 10s infinite linear;
+  color: green;
+}
+
+.animation-bearish {
+  -webkit-animation: floatDown 10s 1 linear;
+  -moz-animation: floatDown 10s 1 linear;
+  -o-animation: floatDown 10s 1 linear;
+  animation: floatDown 10s 1 linear;
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -o-transform: scale(1);
   transform: scale(1);
-  color: green;
+}
+
+.animation-bullish {
+  -webkit-animation: floatUp 10s 1 linear;
+  -moz-animation: floatUp 10s 1 linear;
+  -o-animation: floatUp 10s 1 linear;
+  animation: floatUp 10s 1 linear;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
 }
 
 @-webkit-keyframes floatUp {

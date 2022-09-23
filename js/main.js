@@ -2,6 +2,7 @@
 const dogeGif = document.querySelector(".doge-gif");
 const message = document.querySelector(".message");
 const arrowContainer = document.querySelector(".arrow-container");
+const arrows = document.querySelectorAll(".arrow");
 
 const happyGif = "https://c.tenor.com/XUX6DFHZ-l0AAAAi/cool-doge-cool-dog.gif";
 const sadGif = "https://c.tenor.com/5YrUft9OXfUAAAAC/bonk-doge.gif";
@@ -29,9 +30,7 @@ const handleDogeData = function (data = 0) {
     return;
   }
 
-  console.log(data);
   const percentChange24Hr = data.market_data.price_change_percentage_24h;
-  console.log(percentChange24Hr);
 
   if (percentChange24Hr < 0) {
     setMessage(
@@ -63,7 +62,14 @@ const setMessage = function (text) {
 const setArrows = function (state) {
   for (let i = 0; i < 10; i++) {
     const arrowSpan = document.createElement("span");
-    arrowSpan.classList.add("material-icons", "md-96", "arrow", state);
+    arrowSpan.classList.add(
+      "material-icons",
+      "md-96",
+      "arrow",
+      `a${i}`,
+      state,
+      `animation-${state}`
+    );
 
     if (state == "bearish") {
       arrowSpan.innerHTML = "arrow_downward";
@@ -71,8 +77,38 @@ const setArrows = function (state) {
       arrowSpan.innerHTML = "arrow_upward";
     }
 
+    setRandomAnimationDelay(arrowSpan, 7000);
+    arrowSpan.addEventListener("animationend", (e) => {
+      resetAnimation(e);
+    });
     arrowContainer.appendChild(arrowSpan);
   }
+};
+
+const setRandomAnimationDelay = function (element, maxDelayMS = 5000) {
+  element.style.animationDelay = `${getRandomInt(maxDelayMS)}ms`;
+};
+
+const resetAnimation = function (e) {
+  const el = e.srcElement;
+
+  setRandomAnimationDelay(el, 7000);
+
+  if (el.classList.contains("animation-bearish")) {
+    // reset bearish arrow aninmation
+    el.classList.remove("animation-bearish");
+    void el.offsetWidth;
+    el.classList.add("animation-bearish");
+  } else if (el.classList.contains("animation-bullish")) {
+    // reset bullish arrow animation
+    el.classList.remove("animation-bullish");
+    void el.offsetWidth;
+    el.classList.add("animation-bullish");
+  }
+};
+
+const getRandomInt = function (max) {
+  return Math.floor(Math.random() * max);
 };
 
 // main
