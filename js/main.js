@@ -7,22 +7,20 @@ const arrows = document.querySelectorAll(".arrow");
 const happyGif = "https://c.tenor.com/XUX6DFHZ-l0AAAAi/cool-doge-cool-dog.gif";
 const sadGif = "https://c.tenor.com/5YrUft9OXfUAAAAC/bonk-doge.gif";
 
-const getDogeData = function () {
-  const myRequest = new Request(
-    "https://api.coingecko.com/api/v3/coins/dogecoin?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=fals"
-  );
-
-  fetch(myRequest)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      return response.json();
-    })
-    .then((response) => {
-      handleDogeData(response);
-    });
+const getDogeData = async function () {
+  try {
+    const myRequest = new Request(
+      "https://api.coingecko.com/api/v3/coins/dogecoin?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=fals"
+    );
+    const response = await fetch(myRequest);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    handleDogeData(data);
+  } catch (error) {
+    console.error(`Error: ${error}`);
+  }
 };
 
 const handleDogeData = function (data = 0) {
