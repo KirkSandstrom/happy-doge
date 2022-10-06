@@ -22,6 +22,50 @@
       <div class="arrow-container"></div>
     </div>
 
+    <div class="settings-drawer settings-drawer--closed">
+      <div class="settings-drawer__container">
+        <button class="settings-drawer__toggle">Settings & Info</button>
+
+        <form class="settings-form">
+          <fieldset class="fieldset">
+            <legend class="fieldset__legend">
+              Show the percentage price change over the past:
+            </legend>
+            <div class="input-group">
+              <input
+                type="radio"
+                id="interval5Mins"
+                name="timeInterval"
+                value="5 minutes"
+              />
+              <label for="interval5Mins">5 minutes</label>
+            </div>
+
+            <div class="input-group">
+              <input
+                type="radio"
+                id="interval1Hour"
+                name="timeInterval"
+                value="1 hour"
+              />
+              <label for="interval1Hour">1 hour</label>
+            </div>
+
+            <div class="input-group">
+              <input
+                type="radio"
+                id="interval24Hours"
+                name="timeInterval"
+                value="24 hours"
+                checked
+              />
+              <label for="interval24Hours">24 hours</label>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
     <script src="js/main.js"></script>
   </body>
 </html>

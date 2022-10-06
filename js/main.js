@@ -3,6 +3,8 @@ const dogeGif = document.querySelector(".doge-gif");
 const message = document.querySelector(".message");
 const arrowContainer = document.querySelector(".arrow-container");
 const arrows = document.querySelectorAll(".arrow");
+const settingsDrawer = document.querySelector(".settings-drawer");
+const settingsDrawerToggle = document.querySelector(".settings-drawer__toggle");
 
 const happyGif = "https://c.tenor.com/XUX6DFHZ-l0AAAAi/cool-doge-cool-dog.gif";
 const sadGif = "https://c.tenor.com/5YrUft9OXfUAAAAC/bonk-doge.gif";
@@ -119,5 +121,16 @@ const roundAccurately = function (number, decimalPlaces) {
   );
 };
 
+const toggleSettingsDrawer = function () {
+  if (settingsDrawer.classList.contains("settings-drawer--closed")) {
+    settingsDrawer.classList.remove("settings-drawer--closed");
+    settingsDrawer.classList.add("settings-drawer--open");
+  } else if (settingsDrawer.classList.contains("settings-drawer--open")) {
+    settingsDrawer.classList.remove("settings-drawer--open");
+    settingsDrawer.classList.add("settings-drawer--closed");
+  }
+};
+
 // main
 getDogeData();
+settingsDrawerToggle.addEventListener("click", toggleSettingsDrawer);
