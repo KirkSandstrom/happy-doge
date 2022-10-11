@@ -1,14 +1,22 @@
 "use strict";
+//-------------------- variables --------------------
 const dogeGif = document.querySelector(".doge-gif");
 const message = document.querySelector(".message");
 const arrowContainer = document.querySelector(".arrow-container");
-const arrows = document.querySelectorAll(".arrow");
 const settingsDrawer = document.querySelector(".settings-drawer");
 const settingsDrawerToggle = document.querySelector(".settings-drawer__toggle");
+const timeIntervalRadioInputs = document.querySelectorAll(
+  'input[name="timeInterval"]'
+);
 
 const happyGif = "https://c.tenor.com/XUX6DFHZ-l0AAAAi/cool-doge-cool-dog.gif";
 const sadGif = "https://c.tenor.com/5YrUft9OXfUAAAAC/bonk-doge.gif";
 
+let dogeData = 0;
+let timeInterval = "24hour";
+//------------------ end variables ------------------
+
+//-------------------- functions --------------------
 const getDogeData = async function () {
   try {
     const myRequest = new Request(
@@ -19,38 +27,55 @@ const getDogeData = async function () {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.json();
-    handleDogeData(data);
+    return data;
   } catch (error) {
     console.error(`Error: ${error}`);
   }
 };
 
-const handleDogeData = function (data = 0) {
+const handleDogeData = function (data = 0, timeInterval = "24hour") {
   if (data == 0) {
     return;
   }
 
-  const percentChange24Hr = data.market_data.price_change_percentage_24h;
-  const roundedPercentChanger24Hr = roundAccurately(percentChange24Hr, 2);
+  console.log(data);
 
-  if (roundedPercentChanger24Hr < 0) {
-    const roundedPercentChanger24Hr = roundAccurately(percentChange24Hr, 2);
+  let percentChangeOverTimeInterval;
+  let timeIntervalMessage;
+
+  if (timeInterval == "24hour") {
+    console.log(data.market_data.price_change_percentage_24h);
+    percentChangeOverTimeInterval = roundAccurately(
+      data.market_data.price_change_percentage_24h,
+      2
+    );
+    timeIntervalMessage = "24 hours";
+  } else if (timeInterval == "1hour") {
+    console.log(data.market_data.price_change_percentage_1h_in_currency.usd);
+    percentChangeOverTimeInterval = roundAccurately(
+      data.market_data.price_change_percentage_1h_in_currency.usd,
+      2
+    );
+    timeIntervalMessage = "1 hour";
+  }
+
+  if (percentChangeOverTimeInterval < 0) {
     setMessage(
       `Dogecoin is down ${Math.abs(
-        roundedPercentChanger24Hr
-      )}% over the past 24 hours :(`
+        percentChangeOverTimeInterval
+      )}% over the past ${timeIntervalMessage} :(`
     );
     setGif(sadGif);
     setArrows("bearish");
+    arrowContainer.classList.remove("bg-bullish");
     arrowContainer.classList.add("bg-bearish");
   } else {
     setMessage(
-      `Dogecoin is up ${Math.abs(
-        roundedPercentChanger24Hr
-      )}% over the past 24 hours :D`
+      `Dogecoin is up ${percentChangeOverTimeInterval}% over the past ${timeIntervalMessage} :D`
     );
     setGif(happyGif);
     setArrows("bullish");
+    arrowContainer.classList.remove("bg-bearish");
     arrowContainer.classList.add("bg-bullish");
   }
 };
@@ -64,6 +89,8 @@ const setMessage = function (text) {
 };
 
 const setArrows = function (state) {
+  removeExistingArrows();
+
   for (let i = 0; i < 10; i++) {
     const arrowSpan = document.createElement("span");
     arrowSpan.classList.add(
@@ -86,6 +113,14 @@ const setArrows = function (state) {
       resetAnimation(e);
     });
     arrowContainer.appendChild(arrowSpan);
+  }
+};
+
+const removeExistingArrows = function () {
+  const existingArrows = document.querySelectorAll(".arrow");
+  if (existingArrows.length != 0) {
+    console.log("existingArrows is not empty: ", existingArrows);
+    existingArrows.forEach((e) => e.remove());
   }
 };
 
@@ -131,6 +166,33 @@ const toggleSettingsDrawer = function () {
   }
 };
 
-// main
-getDogeData();
-settingsDrawerToggle.addEventListener("click", toggleSettingsDrawer);
+const setTimeInterval = function () {
+  for (const i of timeIntervalRadioInputs) {
+    if (i.checked) {
+      timeInterval = i.value;
+    }
+  }
+
+  console.log(timeInterval);
+};
+//------------------ end functions ------------------
+
+//---------------------- main -----------------------
+const main = async function () {
+  // get the initial dogeData and initalize the Doge + arrows
+  dogeData = await getDogeData();
+  handleDogeData(dogeData, timeInterval);
+
+  // event listener to toggle the settings drawer
+  settingsDrawerToggle.addEventListener("click", toggleSettingsDrawer);
+
+  // listen for chagnes to the time interval options
+  timeIntervalRadioInputs.forEach((element) => {
+    element.addEventListener("input", () => {
+      setTimeInterval();
+      handleDogeData(dogeData, timeInterval);
+    });
+  });
+};
+
+main();
