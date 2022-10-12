@@ -327,6 +327,9 @@ img {
   width: 100%;
   background-color: #ffaa20;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .settings-drawer--closed {
@@ -376,6 +379,46 @@ img {
   margin: 0.25rem 0;
 }
 /* /settings & info drawer */
+
+/* footer */
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* padding-bottom: 1rem; */
+}
+/* footer */
+
+/* linked callout */
+.linked-callout {
+  display: flex;
+  margin: 1rem 0;
+}
+
+.linked-callout__link {
+  display: flex;
+  align-items: center;
+  color: #000;
+  text-decoration: none;
+}
+
+.linked-callout__link:hover {
+  color: #333;
+}
+
+.linked-callout__link:visited {
+  color: initial;
+}
+
+.linked-callout__text {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+.linked-callout__image {
+  width: 3rem;
+}
+/* /linked callout */
 
 /* mobile*/
 /* breakpoint: 930px */
