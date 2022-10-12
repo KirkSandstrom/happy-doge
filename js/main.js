@@ -1,7 +1,7 @@
 "use strict";
 //-------------------- variables --------------------
-const dogeGif = document.querySelector(".doge-gif");
-const message = document.querySelector(".message");
+const dogeGif = document.querySelector(".dogecoin-info__gif");
+const message = document.querySelector(".dogecoin-info__message");
 const arrowContainer = document.querySelector(".arrow-container");
 const settingsDrawer = document.querySelector(".settings-drawer");
 const settingsDrawerToggle = document.querySelector(".settings-drawer__toggle");
@@ -67,16 +67,16 @@ const handleDogeData = function (data = 0, timeInterval = "24hour") {
     );
     setGif(sadGif);
     setArrows("bearish");
-    arrowContainer.classList.remove("bg-bullish");
-    arrowContainer.classList.add("bg-bearish");
+    arrowContainer.classList.remove("arrow-container--bg-bullish");
+    arrowContainer.classList.add("arrow-container--bg-bearish");
   } else {
     setMessage(
       `Dogecoin is up ${percentChangeOverTimeInterval}% over the past ${timeIntervalMessage} :D`
     );
     setGif(happyGif);
     setArrows("bullish");
-    arrowContainer.classList.remove("bg-bearish");
-    arrowContainer.classList.add("bg-bullish");
+    arrowContainer.classList.remove("arrow-container--bg-bearish");
+    arrowContainer.classList.add("arrow-container--bg-bullish");
   }
 };
 
