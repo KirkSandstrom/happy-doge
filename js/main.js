@@ -175,6 +175,36 @@ const setTimeInterval = function () {
 
   console.log(timeInterval);
 };
+
+// async interval timer
+// credit to: Jacob McCrumb
+// https://dev.to/jsmccrumb/asynchronous-setinterval-4j69
+const asyncIntervals = [];
+
+const runAsyncInterval = async (cb, interval, intervalIndex) => {
+  await cb();
+  if (asyncIntervals[intervalIndex]) {
+    setTimeout(() => runAsyncInterval(cb, interval, intervalIndex), interval);
+  }
+};
+
+const setAsyncInterval = (cb, interval) => {
+  if (cb && typeof cb === "function") {
+    const intervalIndex = asyncIntervals.length;
+    asyncIntervals.push(true);
+    runAsyncInterval(cb, interval, intervalIndex);
+    return intervalIndex;
+  } else {
+    throw new Error("Callback must be a function");
+  }
+};
+
+const clearAsyncInterval = (intervalIndex) => {
+  if (asyncIntervals[intervalIndex]) {
+    asyncIntervals[intervalIndex] = false;
+  }
+};
+
 //------------------ end functions ------------------
 
 //---------------------- main -----------------------
@@ -182,6 +212,14 @@ const main = async function () {
   // get the initial dogeData and initalize the Doge + arrows
   dogeData = await getDogeData();
   handleDogeData(dogeData, timeInterval);
+
+  // an asynchronous interval timer to get/handle new dogeData every 60 seconds
+  setAsyncInterval(async () => {
+    console.log("start");
+    dogeData = await getDogeData();
+    handleDogeData(dogeData, timeInterval);
+    console.log("end");
+  }, 60000);
 
   // event listener to toggle the settings drawer
   settingsDrawerToggle.addEventListener("click", toggleSettingsDrawer);

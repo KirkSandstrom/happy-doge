@@ -39,6 +39,15 @@ img {
   height: auto;
 }
 /* /reset */
+/* force form inputs to inherit fonts */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+/* /force form inputs to inherit fonts */
 
 /* material design */
 /* Rules for sizing the icon. */
