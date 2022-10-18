@@ -65,18 +65,22 @@ const handleDogeData = function (data = 0, timeInterval = "24hour") {
         percentChangeOverTimeInterval
       )}% over the past ${timeIntervalMessage} :(`
     );
-    setGif(sadGif);
-    setArrows("bearish");
-    arrowContainer.classList.remove("arrow-container--bg-bullish");
-    arrowContainer.classList.add("arrow-container--bg-bearish");
+    if (!arrowContainer.classList.contains("arrow-container--bg-bearish")) {
+      setGif(sadGif);
+      setArrows("bearish");
+      arrowContainer.classList.remove("arrow-container--bg-bullish");
+      arrowContainer.classList.add("arrow-container--bg-bearish");
+    }
   } else {
     setMessage(
       `Dogecoin is up ${percentChangeOverTimeInterval}% over the past ${timeIntervalMessage} :D`
     );
-    setGif(happyGif);
-    setArrows("bullish");
-    arrowContainer.classList.remove("arrow-container--bg-bearish");
-    arrowContainer.classList.add("arrow-container--bg-bullish");
+    if (!arrowContainer.classList.contains("arrow-container--bg-bullish")) {
+      setGif(happyGif);
+      setArrows("bullish");
+      arrowContainer.classList.remove("arrow-container--bg-bearish");
+      arrowContainer.classList.add("arrow-container--bg-bullish");
+    }
   }
 };
 
