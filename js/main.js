@@ -38,20 +38,16 @@ const handleDogeData = function (data = 0, timeInterval = "24hour") {
     return;
   }
 
-  console.log(data);
-
   let percentChangeOverTimeInterval;
   let timeIntervalMessage;
 
   if (timeInterval == "24hour") {
-    console.log(data.market_data.price_change_percentage_24h);
     percentChangeOverTimeInterval = roundAccurately(
       data.market_data.price_change_percentage_24h,
       2
     );
     timeIntervalMessage = "24 hours";
   } else if (timeInterval == "1hour") {
-    console.log(data.market_data.price_change_percentage_1h_in_currency.usd);
     percentChangeOverTimeInterval = roundAccurately(
       data.market_data.price_change_percentage_1h_in_currency.usd,
       2
@@ -123,7 +119,6 @@ const setArrows = function (state) {
 const removeExistingArrows = function () {
   const existingArrows = document.querySelectorAll(".arrow");
   if (existingArrows.length != 0) {
-    console.log("existingArrows is not empty: ", existingArrows);
     existingArrows.forEach((e) => e.remove());
   }
 };
@@ -176,8 +171,6 @@ const setTimeInterval = function () {
       timeInterval = i.value;
     }
   }
-
-  console.log(timeInterval);
 };
 
 // async interval timer
@@ -219,10 +212,8 @@ const main = async function () {
 
   // an asynchronous interval timer to get/handle new dogeData every 60 seconds
   setAsyncInterval(async () => {
-    console.log("start");
     dogeData = await getDogeData();
     handleDogeData(dogeData, timeInterval);
-    console.log("end");
   }, 60000);
 
   // event listener to toggle the settings drawer
