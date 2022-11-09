@@ -39,6 +39,13 @@ img {
   height: auto;
 }
 /* /reset */
+
+/* body */
+body {
+  overflow: hidden;
+}
+/* /body */
+
 /* force form inputs to inherit fonts */
 button,
 input,
@@ -340,15 +347,15 @@ textarea {
 }
 
 .settings-drawer--closed {
-  top: calc(
-    100vh - 3.5rem
-  ); /* 100vh - .settings-drawer__toggle height and margin combined */
-  transition: top 1000ms ease-in-out;
+  bottom: 0;
+  height: 56px; /* .settings-drawer__toggle height and margin combined */
+  transition: height 1000ms ease-in-out;
 }
 
 .settings-drawer--open {
-  top: 0;
-  transition: top 1000ms ease-in-out;
+  bottom: 0;
+  height: 100%;
+  transition: height 1000ms ease-in-out;
 }
 
 .settings-drawer__container {
